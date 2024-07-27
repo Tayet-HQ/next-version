@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 class DrawerTile extends StatelessWidget {
   final String title;
   final IconData icon;
-  final Function onTap;
+  final void Function()? onTap;
   final bool isSelected;
   final Color iconColor;
 
   DrawerTile(
-      {this.title,
-      this.icon,
-      this.onTap,
+      {required this.title,
+      required this.icon,
+      required this.onTap,
       this.isSelected = false,
       this.iconColor = Colors.black});
 

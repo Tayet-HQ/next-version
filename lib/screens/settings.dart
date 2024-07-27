@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 //widgets
-import 'package:material_kit_flutter/widgets/navbar.dart';
-import 'package:material_kit_flutter/widgets/table-cell.dart';
+import 'package:tayet_app_v3/widgets/navbar.dart';
+import 'package:tayet_app_v3/widgets/table-cell.dart';
 
-import 'package:material_kit_flutter/widgets/drawer.dart';
+import 'package:tayet_app_v3/widgets/drawer.dart';
 
 class Settings extends StatefulWidget {
+  const Settings({Key? key}) : super(key: key);
+
   @override
   _SettingsState createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
-  bool switchValueOne;
-  bool switchValueTwo;
+  late bool switchValueOne;
+  late bool switchValueTwo;
 
+  @override
   void initState() {
     setState(() {
       switchValueOne = true;
@@ -30,19 +33,25 @@ class _SettingsState extends State<Settings> {
     return Scaffold(
         appBar: Navbar(
           title: "Settings",
+          searchBar: false,
+          categoryOne: "",
+          categoryTwo: "",
+          tags: const [],
+          getCurrentPage: Function.apply,
+          searchController: TextEditingController(),
+          searchOnChanged: Function.apply,
         ),
         drawer: MaterialDrawer(currentPage: "Settings"),
         backgroundColor: MaterialColors.bgColorScreen,
-        body: Container(
-            child: SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Padding(
             padding:
                 const EdgeInsets.symmetric(vertical: 32.0, horizontal: 16.0),
             child: Column(
               children: [
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text("Recommended Settings",
                         style: TextStyle(
                             color: Colors.black,
@@ -50,9 +59,9 @@ class _SettingsState extends State<Settings> {
                             fontSize: 18)),
                   ),
                 ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text("These are the most important settings",
                         style: TextStyle(
                             color: MaterialColors.caption, fontSize: 14)),
@@ -61,7 +70,7 @@ class _SettingsState extends State<Settings> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Use FaceID to signin",
+                    const Text("Use FaceID to signin",
                         style: TextStyle(color: Colors.black)),
                     Switch.adaptive(
                       value: switchValueOne,
@@ -74,7 +83,7 @@ class _SettingsState extends State<Settings> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Auto-Lock security",
+                    const Text("Auto-Lock security",
                         style: TextStyle(color: Colors.black)),
                     Switch.adaptive(
                       value: switchValueTwo,
@@ -89,10 +98,10 @@ class _SettingsState extends State<Settings> {
                     onTap: () {
                       Navigator.pushReplacementNamed(context, '/pro');
                     }),
-                SizedBox(height: 36.0),
-                Center(
+                const SizedBox(height: 36.0),
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding: EdgeInsets.only(top: 16.0),
                     child: Text("Payment Settings",
                         style: TextStyle(
                             color: Colors.black,
@@ -100,21 +109,27 @@ class _SettingsState extends State<Settings> {
                             fontSize: 18)),
                   ),
                 ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text("These are also important settings",
                         style: TextStyle(color: MaterialColors.caption)),
                   ),
                 ),
-                TableCellSettings(title: "Manage Payment Options"),
-                TableCellSettings(title: "Manage Gift Cards"),
-                SizedBox(
+                TableCellSettings(
+                  title: "Manage Payment Options",
+                  onTap: () {},
+                ),
+                TableCellSettings(
+                  title: "Manage Gift Cards",
+                  onTap: () {},
+                ),
+                const SizedBox(
                   height: 36.0,
                 ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 16.0),
+                    padding: EdgeInsets.only(top: 16.0),
                     child: Text("Privacy Settings",
                         style: TextStyle(
                             color: Colors.black,
@@ -122,9 +137,9 @@ class _SettingsState extends State<Settings> {
                             fontSize: 18)),
                   ),
                 ),
-                Center(
+                const Center(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
+                    padding: EdgeInsets.only(top: 8.0),
                     child: Text("Third most important settings",
                         style: TextStyle(color: MaterialColors.caption)),
                   ),
@@ -147,6 +162,6 @@ class _SettingsState extends State<Settings> {
               ],
             ),
           ),
-        )));
+        ));
   }
 }

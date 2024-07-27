@@ -1,7 +1,6 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 class Pro extends StatelessWidget {
   @override
@@ -76,15 +75,18 @@ class Pro extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: SizedBox(
                     width: double.infinity,
-                    child: FlatButton(
-                      textColor: Colors.white,
-                      color: MaterialColors.info,
+                    child: TextButton(
+
                       onPressed: () {
                         Navigator.pushReplacementNamed(context, '/home');
                       },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.0),
-                      ),
+                      style: TextButton.styleFrom(
+                          foregroundColor: MaterialColors.primary,
+                          backgroundColor: MaterialColors.primary,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4.0)),
+                          textStyle: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 16.0)),
                       child: Padding(
                           padding: EdgeInsets.only(
                               left: 16.0, right: 16.0, top: 12, bottom: 12),

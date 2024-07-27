@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
-// import 'package:material_kit_flutter/screens/categories.dart';
-// import 'package:material_kit_flutter/screens/best-deals.dart';
-// import 'package:material_kit_flutter/screens/search.dart';
-// import 'package:material_kit_flutter/screens/cart.dart';
-// import 'package:material_kit_flutter/screens/chat.dart';
+// import 'package:tayet_app_v3/screens/categories.dart';
+// import 'package:tayet_app_v3/screens/best-deals.dart';
+// import 'package:tayet_app_v3/screens/search.dart';
+// import 'package:tayet_app_v3/screens/cart.dart';
+// import 'package:tayet_app_v3/screens/chat.dart';
 
-import 'package:material_kit_flutter/widgets/input.dart';
+import 'package:tayet_app_v3/widgets/input.dart';
 
 class Navbar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -31,13 +31,13 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
       {this.title = "Home",
       this.categoryOne = "",
       this.categoryTwo = "",
-      this.tags,
+      required this.tags,
       this.transparent = false,
       this.rightOptions = true,
-      this.getCurrentPage,
-      this.searchController,
+      required this.getCurrentPage,
+      required this.searchController,
       this.isOnSearch = false,
-      this.searchOnChanged,
+      required this.searchOnChanged,
       this.searchAutofocus = false,
       this.backButton = false,
       this.noShadow = false,
@@ -54,12 +54,12 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
 }
 
 class _NavbarState extends State<Navbar> {
-  String activeTag;
+  late String activeTag;
 
   ItemScrollController _scrollController = ItemScrollController();
 
   void initState() {
-    if (widget.tags != null && widget.tags.length != 0) {
+    if (widget.tags.length != 0) {
       activeTag = widget.tags[0];
     }
     super.initState();
@@ -70,6 +70,7 @@ class _NavbarState extends State<Navbar> {
     final bool categories =
         widget.categoryOne.isNotEmpty && widget.categoryTwo.isNotEmpty;
     final bool tagsExist =
+        // ignore: unnecessary_null_comparison
         widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
 
     return Container(
@@ -183,7 +184,9 @@ class _NavbarState extends State<Navbar> {
                     child: Input(
                         placeholder: "What are you looking for?",
                         controller: widget.searchController,
-                        onChanged: widget.searchOnChanged,
+                        onChanged: (String value) {
+                          widget.searchOnChanged(value);
+                        },
                         autofocus: widget.searchAutofocus,
                         outlineBorder: true,
                         enabledBorderColor: Colors.black.withOpacity(0.2),
@@ -196,7 +199,11 @@ class _NavbarState extends State<Navbar> {
                           //     context,
                           //     MaterialPageRoute(
                           //         builder: (context) => Search()));
-                        }),
+                        },
+                        prefixIcon:
+                            Icon(Icons.search, color: MaterialColors.muted),
+                        filled: true,
+                        fillColor: Colors.white),
                   ),
                 SizedBox(
                   height: tagsExist ? 0 : 10,
@@ -268,8 +275,7 @@ class _NavbarState extends State<Navbar> {
                                       index == widget.tags.length - 1 ? 1 : 0,
                                   duration: Duration(milliseconds: 420),
                                   curve: Curves.easeIn);
-                              if (widget.getCurrentPage != null)
-                                widget.getCurrentPage(activeTag);
+                              widget.getCurrentPage(activeTag);
                             }
                           },
                           child: Container(

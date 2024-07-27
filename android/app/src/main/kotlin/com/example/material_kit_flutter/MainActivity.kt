@@ -1,4 +1,4 @@
-package com.example.material_kit_flutter
+package com.example.tayet_app_v3
 
 import io.flutter.embedding.android.FlutterActivity
 

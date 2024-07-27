@@ -1,20 +1,22 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 //widgets
-import 'package:material_kit_flutter/widgets/navbar.dart';
-import 'package:material_kit_flutter/widgets/drawer.dart';
-import 'package:material_kit_flutter/widgets/input.dart';
-import 'package:material_kit_flutter/widgets/card-horizontal.dart';
-import 'package:material_kit_flutter/widgets/card-category.dart';
-import 'package:material_kit_flutter/widgets/card-small.dart';
-import 'package:material_kit_flutter/widgets/card-square.dart';
-import 'package:material_kit_flutter/widgets/slider-product.dart';
-import 'package:material_kit_flutter/widgets/photo-album.dart';
+import 'package:tayet_app_v3/widgets/navbar.dart';
+import 'package:tayet_app_v3/widgets/drawer.dart';
+import 'package:tayet_app_v3/widgets/input.dart';
+import 'package:tayet_app_v3/widgets/card-horizontal.dart';
+import 'package:tayet_app_v3/widgets/card-category.dart';
+import 'package:tayet_app_v3/widgets/card-small.dart';
+import 'package:tayet_app_v3/widgets/card-square.dart';
+import 'package:tayet_app_v3/widgets/slider-product.dart';
+import 'package:tayet_app_v3/widgets/photo-album.dart';
 
-import 'package:material_kit_flutter/widgets/table-cell.dart';
+import 'package:tayet_app_v3/widgets/table-cell.dart';
 
 final Map<String, Map<String, String>> homeCards = {
   "Ice Cream": {
@@ -86,14 +88,17 @@ List<Map<String, String>> imgArray = [
 ];
 
 class Components extends StatefulWidget {
+  const Components({Key? key}) : super(key: key);
+
   @override
   _ComponentsState createState() => _ComponentsState();
 }
 
 class _ComponentsState extends State<Components> {
-  bool switchValueOne;
-  bool switchValueTwo;
+  late bool switchValueOne;
+  late bool switchValueTwo;
 
+  @override
   void initState() {
     setState(() {
       switchValueOne = true;
@@ -107,17 +112,22 @@ class _ComponentsState extends State<Components> {
     return Scaffold(
         appBar: Navbar(
           title: "Elements",
+          tags: const [],
+          getCurrentPage: Function.apply,
+          searchController: TextEditingController(),
+          searchOnChanged: Function.apply,
+
         ),
         backgroundColor: MaterialColors.bgColorScreen,
         drawer: MaterialDrawer(currentPage: "Components"),
         body: SingleChildScrollView(
             child: Padding(
-          padding: EdgeInsets.only(right: 24, left: 24, bottom: 36),
+          padding: const EdgeInsets.only(right: 24, left: 24, bottom: 36),
           child: SafeArea(
             bottom: true,
             child: Column(children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Buttons",
@@ -132,22 +142,23 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 16),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.defaultButton,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.defaultButton,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("DEFAULT",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
@@ -156,22 +167,23 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.primary,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.primary,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("PRIMARY",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
@@ -180,22 +192,23 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.info,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.info,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("INFO",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
@@ -204,22 +217,23 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.success,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.success,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("SUCCESS",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
@@ -228,22 +242,23 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.warning,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.warning,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("WARNING",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
@@ -252,27 +267,28 @@ class _ComponentsState extends State<Components> {
                 child: Padding(
                   padding:
                       const EdgeInsets.only(left: 34.0, right: 34.0, top: 8),
-                  child: RaisedButton(
-                    textColor: Colors.white,
-                    color: MaterialColors.error,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      backgroundColor: MaterialColors.error,
+                    ),
                     onPressed: () {
                       // Respond to button press
                       Navigator.pushReplacementNamed(context, '/home');
                     },
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Padding(
+                    child: const Padding(
                         padding: EdgeInsets.only(
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("ERROR",
                             style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0))),
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16.0,
+                                color: Colors.white))),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Typography",
@@ -282,40 +298,40 @@ class _ComponentsState extends State<Components> {
                           fontSize: 16)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 16.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 1",
                       style: TextStyle(fontSize: 44, color: Colors.black)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 2",
                       style: TextStyle(fontSize: 38, color: Colors.black)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 3",
                       style: TextStyle(fontSize: 30, color: Colors.black)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 4",
                       style: TextStyle(fontSize: 24, color: Colors.black)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Heading 5",
@@ -324,14 +340,20 @@ class _ComponentsState extends State<Components> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text("Paragraph",
-                      style: TextStyle(fontSize: 16, color: Colors.black)),
+                child: Input(
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  filled: true,
+                  fillColor: Colors.white,
+                  onChanged: (value) {},
+                  controller: TextEditingController(),
+                  placeholder: "Heading 6",
+                  hintTextColor: MaterialColors.muted,
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+              const Padding(
+                padding: EdgeInsets.only(top: 8.0),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("This is a muted paragraph.",
@@ -339,8 +361,8 @@ class _ComponentsState extends State<Components> {
                           TextStyle(fontSize: 16, color: MaterialColors.muted)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Inputs",
@@ -353,8 +375,15 @@ class _ComponentsState extends State<Components> {
               Padding(
                 padding: const EdgeInsets.only(top: 32.0),
                 child: Input(
-                  placeholder: "placeholder",
-                  focusedBorderColor: MaterialColors.muted,
+                  placeholder: "Regular",
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  filled: true,
+                  fillColor: Colors.white,
+                  onChanged: (value) {},
+                  controller: TextEditingController(),
+                  hintTextColor: MaterialColors.muted,
                 ),
               ),
               Padding(
@@ -365,6 +394,15 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.primary,
                   textColor: MaterialColors.primary,
                   hintTextColor: MaterialColors.primary,
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  controller: TextEditingController(text: "Primary"),
+                  fillColor: Colors.white,
+                  filled: true,
+                  onChanged: (value) => {
+                    print(value),
+                  },
+                  onTap: () => print("Tap"),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
                 ),
               ),
               Padding(
@@ -375,6 +413,13 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.info,
                   textColor: MaterialColors.info,
                   hintTextColor: MaterialColors.info,
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  controller: TextEditingController(text: "Info"),
+                  fillColor: Colors.white,
+                  filled: true,
+                  onChanged: (value) {},
                 ),
               ),
               Padding(
@@ -385,6 +430,14 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.success,
                   textColor: MaterialColors.success,
                   hintTextColor: MaterialColors.success,
+                  controller: TextEditingController(text: "Success"),
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  filled: true,
+                  fillColor: Colors.white,
+                  onChanged: (value) {},
+
                 ),
               ),
               Padding(
@@ -396,6 +449,13 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.warning,
                   textColor: MaterialColors.warning,
                   hintTextColor: MaterialColors.warning,
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  filled: true,
+                  fillColor: Colors.white,
+                  onChanged: (value) {},
+                  controller: TextEditingController(),
                 ),
               ),
               Padding(
@@ -407,18 +467,36 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.error,
                   textColor: MaterialColors.error,
                   hintTextColor: MaterialColors.error,
+                  suffixIcon: const Icon(Icons.remove_red_eye),
+                  prefixIcon: const Icon(Icons.remove_red_eye),
+                  onTap: () {},
+                  filled: true,
+                  fillColor: Colors.white,
+                  onChanged: (value) {},
+                  controller: TextEditingController(),
+
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Input(
-                  placeholder: "outline border",
+                  placeholder: "icon left",
                   outlineBorder: true,
                   borderColor: MaterialColors.muted,
                   focusedBorderColor: MaterialColors.muted,
                   enabledBorderColor: MaterialColors.muted,
                   textColor: MaterialColors.muted,
                   hintTextColor: MaterialColors.muted,
+                  prefixIcon: const Icon(Icons.camera_enhance),
+                  suffixIcon: const Icon(Icons.camera_enhance),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  controller: TextEditingController(),
+                  fillColor: Colors.white,
+                  filled: true,
+                  onChanged: (value) {},
+
                 ),
               ),
               Padding(
@@ -431,11 +509,20 @@ class _ComponentsState extends State<Components> {
                   enabledBorderColor: MaterialColors.muted,
                   textColor: MaterialColors.muted,
                   hintTextColor: MaterialColors.muted,
-                  suffixIcon: Icon(Icons.camera_enhance),
+                  suffixIcon: const Icon(Icons.camera_enhance),
+                  prefixIcon: const Icon(Icons.camera_enhance),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  },
+                  controller: TextEditingController(),
+                  fillColor: Colors.white,
+                  filled: true,
+                  onChanged: (value) {},
+
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Switches",
@@ -448,7 +535,8 @@ class _ComponentsState extends State<Components> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Switch is ON", style: TextStyle(color: Colors.black)),
+                  const Text("Switch is ON",
+                      style: TextStyle(color: Colors.black)),
                   Switch.adaptive(
                     value: switchValueOne,
                     onChanged: (bool newValue) =>
@@ -460,7 +548,8 @@ class _ComponentsState extends State<Components> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Switch is OFF", style: TextStyle(color: Colors.black)),
+                  const Text("Switch is OFF",
+                      style: TextStyle(color: Colors.black)),
                   Switch.adaptive(
                     value: switchValueTwo,
                     onChanged: (bool newValue) =>
@@ -469,8 +558,8 @@ class _ComponentsState extends State<Components> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Navigation",
@@ -480,37 +569,54 @@ class _ComponentsState extends State<Components> {
                           fontSize: 16)),
                 ),
               ),
-              Navbar(
-                title: "Regular",
-                backButton: true,
-              ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Navbar(
-                    title: "Custom background",
-                    backButton: true,
-                    bgColor: MaterialColors.primary),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 16.0),
-                child: Navbar(
-                  title: "Categories",
-                  searchBar: true,
-                  categoryOne: "Incredible",
-                  categoryTwo: "Customization",
+                  title: "Simple",
                   backButton: true,
+                  searchBar: true,
+                  getCurrentPage: Function.apply,
+                  searchController: TextEditingController(),
+                  searchOnChanged: Function.apply,
+                  tags: const [],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: Navbar(
-                  title: "Search",
+                  title: "Simple",
                   searchBar: true,
-                  backButton: true,
+                  getCurrentPage: Function.apply,
+                  searchController: TextEditingController(),
+                  searchOnChanged: Function.apply,
+                  tags: const [],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Navbar(
+                  title: "Simple",
+                  searchBar: true,
+                  backButton: true,
+                  getCurrentPage: Function.apply,
+                  searchController: TextEditingController(),
+                  searchOnChanged: Function.apply,
+                  tags: const [],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Navbar(
+                  title: "Simple",
+                  searchBar: true,
+                  getCurrentPage: Function.apply,
+                  searchController: TextEditingController(),
+                  searchOnChanged: Function.apply,
+                  tags: const [],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Table Cell",
@@ -525,8 +631,8 @@ class _ComponentsState extends State<Components> {
                   onTap: () {
                     Navigator.pushReplacementNamed(context, '/settings');
                   }),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Social",
@@ -547,34 +653,34 @@ class _ComponentsState extends State<Components> {
                       onPressed: () {},
                       elevation: 4.0,
                       fillColor: MaterialColors.socialFacebook,
-                      child: Icon(FontAwesomeIcons.facebook,
+                      padding: const EdgeInsets.all(15.0),
+                      shape: const CircleBorder(),
+                      child: const Icon(FontAwesomeIcons.facebook,
                           size: 24.0, color: Colors.white),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
                     ),
                     RawMaterialButton(
                       onPressed: () {},
                       elevation: 4.0,
                       fillColor: MaterialColors.socialTwitter,
-                      child: Icon(FontAwesomeIcons.twitter,
+                      padding: const EdgeInsets.all(15.0),
+                      shape: const CircleBorder(),
+                      child: const Icon(FontAwesomeIcons.twitter,
                           size: 24.0, color: Colors.white),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
                     ),
                     RawMaterialButton(
                       onPressed: () {},
                       elevation: 4.0,
                       fillColor: MaterialColors.socialDribbble,
-                      child: Icon(FontAwesomeIcons.dribbble,
+                      padding: const EdgeInsets.all(15.0),
+                      shape: const CircleBorder(),
+                      child: const Icon(FontAwesomeIcons.dribbble,
                           size: 24.0, color: Colors.white),
-                      padding: EdgeInsets.all(15.0),
-                      shape: CircleBorder(),
                     )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Cards",
@@ -590,59 +696,59 @@ class _ComponentsState extends State<Components> {
                     padding: const EdgeInsets.only(top: 16.0),
                     child: CardHorizontal(
                         cta: "View article",
-                        title: homeCards["Ice Cream"]['title'],
-                        img: homeCards["Ice Cream"]['image'],
+                        title: homeCards["Ice Cream"]!['title']!,
+                        img: homeCards["Ice Cream"]!['image']!,
                         tap: () {
                           Navigator.pushReplacementNamed(context, '/pro');
                         }),
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CardSmall(
                           cta: "View article",
-                          title: homeCards["Makeup"]['title'],
-                          img: homeCards["Makeup"]['image'],
+                          title: homeCards["Makeup"]!['title']!,
+                          img: homeCards["Makeup"]!['image']!,
                           tap: () {
                             Navigator.pushReplacementNamed(context, '/pro');
                           }),
                       CardSmall(
                           cta: "View article",
-                          title: homeCards["Coffee"]['title'],
-                          img: homeCards["Coffee"]['image'],
+                          title: homeCards["Coffee"]!['title']!,
+                          img: homeCards["Coffee"]!['image']!,
                           tap: () {
                             Navigator.pushReplacementNamed(context, '/pro');
                           })
                     ],
                   ),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   CardHorizontal(
                       cta: "View article",
-                      title: homeCards["Fashion"]['title'],
-                      img: homeCards["Fashion"]['image'],
+                      title: homeCards["Fashion"]!['title']!,
+                      img: homeCards["Fashion"]!['image']!,
                       tap: () {
                         Navigator.pushReplacementNamed(context, '/pro');
                       }),
-                  SizedBox(height: 8.0),
+                  const SizedBox(height: 8.0),
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8.0),
                     child: CardSquare(
                         cta: "View article",
-                        title: homeCards["Argon"]['title'],
-                        img: homeCards["Argon"]['image'],
+                        title: homeCards["Argon"]!['title']!,
+                        img: homeCards["Argon"]!['image']!,
                         tap: () {
                           Navigator.pushReplacementNamed(context, '/pro');
                         }),
                   ),
                   CardCategory(
                       tap: () {},
-                      title: homeCards["Argon"]['title'],
-                      img: homeCards["Argon"]['image']),
+                      title: homeCards["Argon"]!['title']!,
+                      img: homeCards["Argon"]!['image']!),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Album",
@@ -653,8 +759,8 @@ class _ComponentsState extends State<Components> {
                 ),
               ),
               PhotoAlbum(imgArray: albumArray),
-              Padding(
-                padding: const EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
+              const Padding(
+                padding: EdgeInsets.only(left: 8.0, top: 32, bottom: 32),
                 child: Align(
                   alignment: Alignment.centerLeft,
                   child: Text("Slider",
@@ -664,7 +770,7 @@ class _ComponentsState extends State<Components> {
                           fontSize: 16)),
                 ),
               ),
-              ProductCarousel(imgArray: imgArray)
+              ProductCarousel(key: UniqueKey(), imgArray: imgArray),
             ]),
           ),
         )));

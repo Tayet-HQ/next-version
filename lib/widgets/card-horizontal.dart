@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 class CardHorizontal extends StatelessWidget {
   CardHorizontal(
@@ -10,7 +10,7 @@ class CardHorizontal extends StatelessWidget {
 
   final String cta;
   final String img;
-  final Function tap;
+  final VoidCallback tap;
   final String title;
 
   static void defaultFunc() {
@@ -24,7 +24,7 @@ class CardHorizontal extends StatelessWidget {
         margin: EdgeInsets.only(top: 10),
         child: GestureDetector(
           onTap: tap,
-          child: Stack(overflow: Overflow.clip, children: [
+          child: Stack(clipBehavior: Clip.hardEdge, children: [
             Card(
               elevation: 0.7,
               shape: RoundedRectangleBorder(

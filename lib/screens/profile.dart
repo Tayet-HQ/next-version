@@ -1,11 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 //widgets
-import 'package:material_kit_flutter/widgets/navbar.dart';
-import 'package:material_kit_flutter/widgets/drawer.dart';
-import 'package:material_kit_flutter/widgets/photo-album.dart';
+import 'package:tayet_app_v3/widgets/navbar.dart';
+import 'package:tayet_app_v3/widgets/drawer.dart';
+import 'package:tayet_app_v3/widgets/photo-album.dart';
 
 List<String> imgArray = [
   "https://images.unsplash.com/photo-1508264443919-15a31e1d9c1a?fit=crop&w=240&q=80",
@@ -23,7 +22,13 @@ class Profile extends StatelessWidget {
         extendBodyBehindAppBar: true,
         appBar: Navbar(
           title: "Profile",
-          transparent: true,
+          searchBar: false,
+          categoryOne: "",
+          categoryTwo: "",
+          tags: [],
+          getCurrentPage: Function.apply,
+          searchController: TextEditingController(),
+          searchOnChanged: Function.apply,
         ),
         backgroundColor: MaterialColors.bgColorScreen,
         drawer: MaterialDrawer(currentPage: "Profile"),

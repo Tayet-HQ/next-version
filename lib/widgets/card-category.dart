@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
 
 class CardCategory extends StatelessWidget {
   CardCategory(
@@ -8,7 +7,7 @@ class CardCategory extends StatelessWidget {
       this.tap = defaultFunc});
 
   final String img;
-  final Function tap;
+  final VoidCallback tap;
   final String title;
 
   static void defaultFunc() {

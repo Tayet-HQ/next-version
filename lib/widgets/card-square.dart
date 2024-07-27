@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 class CardSquare extends StatelessWidget {
   CardSquare(
@@ -10,7 +10,7 @@ class CardSquare extends StatelessWidget {
 
   final String cta;
   final String img;
-  final Function tap;
+  final VoidCallback tap;
   final String title;
 
   static void defaultFunc() {
@@ -26,7 +26,7 @@ class CardSquare extends StatelessWidget {
         child: GestureDetector(
             onTap: tap,
             child: Stack(
-              overflow: Overflow.clip,
+              clipBehavior: Clip.hardEdge,
               children: [
                 Card(
                     elevation: 0.7,

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:material_kit_flutter/constants/Theme.dart';
+import 'package:tayet_app_v3/constants/Theme.dart';
 
 class PhotoAlbum extends StatelessWidget {
   final List<String> imgArray;
 
-  PhotoAlbum({@required this.imgArray});
+  PhotoAlbum({required this.imgArray});
 
   @override
   Widget build(BuildContext context) {
