@@ -53,5 +53,5 @@ jobs:
           # The CPU architecture ('x64', 'ia32', 'arm', or 'arm64').
           # architecture: # optional
           # The build flavor ('release' or 'raw').
-          # flavor: # optional
+          flavor: 'release'
                 
