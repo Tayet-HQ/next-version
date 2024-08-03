@@ -42,7 +42,7 @@ jobs:
         with:
           files: |
             build/web/*
-          tag_name: ${{ github.ref }} 
+          tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
           body: Automated release from GitHub Actions.
       - name: Pinky Flutter
@@ -53,3 +53,7 @@ jobs:
           # Flutter version
           flutter_version: '3.3.3'
           # Flutter channel
+          flutter_channel: 'stable'
+
+          # Channel ID
+          channel_id: '1114598068234328104'

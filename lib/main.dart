@@ -18,7 +18,7 @@ class MaterialKitPROFlutter extends StatelessWidget {
     return MaterialApp(
         title: 'Tayet Aleeh App',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.purple,
         ),
         debugShowCheckedModeBanner: false,
         initialRoute: "/onboarding",

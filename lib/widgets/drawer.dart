@@ -1,9 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
-
+import 'package:http/http.dart' as http;
 import 'package:tayet_app_v3/constants/Theme.dart';
-
 import 'package:tayet_app_v3/widgets/drawer_tile.dart';
+
+class Category {
+  final String id;
+  final String name;
+
+  Category({required this.id, required this.name});
+
+  factory Category.fromJson(Map<String, dynamic> json) {
+    return Category(
+      id: json['id'],
+      name: json['name'],
+    );
+  }
+}
 
 class MaterialDrawer extends StatelessWidget {
   final String currentPage;
@@ -22,11 +36,11 @@ class MaterialDrawer extends StatelessWidget {
                   children: [
         const CircleAvatar(
           backgroundImage: NetworkImage(
-              "https://images.unsplash.com/photo-1512529920731-e8abaea917a5?fit=crop&w=840&q=80"),
+                      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"),
         ),
         const Padding(
           padding: EdgeInsets.only(bottom: 8.0, top: 16.0),
-          child: Text("Rachel Brown",
+                  child: Text("Tayet Aleeh",
               style: TextStyle(color: Colors.white, fontSize: 21)),
         ),
         Padding(
@@ -82,58 +96,50 @@ class MaterialDrawer extends StatelessWidget {
             iconColor: Colors.black,
             title: "Home",
             isSelected: currentPage == "Home" ? true : false),
+            FutureBuilder<List<Category>>(
+              future: fetchCategories(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('Error: ${snapshot.error}');
+                } else if (snapshot.hasData) {
+                  return Column(
+                    children: snapshot.data!.map((category) {
+                      return DrawerTile(
+                        icon: Icons.category,
+                        onTap: () {
+                          if (currentPage != category.name) {
+                            Navigator.pushReplacementNamed(
+                              context,
+                              '/category/${category.id}',
+                            );
+                          }
+                        },
+                        iconColor: Colors.black,
+                        title: category.name,
+                        isSelected: currentPage == category.name ? true : false,
+                      );
+                    }).toList(),
+                  );
+                } else {
+                  return const Text('No categories found');
+                }
+              },
+            ),
+
         DrawerTile(
-            icon: Icons.face,
+                icon: Icons.favorite,
             onTap: () {
-              if (currentPage != "Woman") {
-                Navigator.pushReplacementNamed(context, '/woman');
+                  if (currentPage != "Favorites") {
+                    Navigator.pushReplacementNamed(context, '/favorites');
               }
             },
             iconColor: Colors.black,
-            title: "Woman",
-            isSelected: currentPage == "Woman" ? true : false),
+                title: "Favorites",
+                isSelected: currentPage == "Favorites" ? true : false),
         DrawerTile(
-            icon: Icons.tag_faces,
-            onTap: () {
-              if (currentPage != "Man") {
-                Navigator.pushReplacementNamed(context, '/man');
-              }
-            },
-            iconColor: Colors.black,
-            title: "Man",
-            isSelected: currentPage == "Man" ? true : false),
-        DrawerTile(
-            icon: Icons.child_friendly,
-            onTap: () {
-              if (currentPage != "Kids") {
-                Navigator.pushReplacementNamed(context, '/kids');
-              }
-            },
-            iconColor: Colors.black,
-            title: "Kids",
-            isSelected: currentPage == "Kids" ? true : false),
-        DrawerTile(
-            icon: Icons.grain,
-            onTap: () {
-              if (currentPage != "New Collection") {
-                Navigator.pushReplacementNamed(context, '/newcollection');
-              }
-            },
-            iconColor: Colors.black,
-            title: "New Collection",
-            isSelected: currentPage == "New Collection" ? true : false),
-        DrawerTile(
-            icon: Icons.settings_input_component,
-            onTap: () {
-              if (currentPage != "Components") {
-                Navigator.pushReplacementNamed(context, '/components');
-              }
-            },
-            iconColor: Colors.black,
-            title: "Components",
-            isSelected: currentPage == "Components" ? true : false),
-        DrawerTile(
-            icon: Icons.account_circle,
+                icon: Icons.person,
             onTap: () {
               if (currentPage != "Profile") {
                 Navigator.pushReplacementNamed(context, '/profile');
@@ -176,5 +182,15 @@ class MaterialDrawer extends StatelessWidget {
               ))
             ]),
     );
+  }
+
+  Future<List<Category>> fetchCategories() async {
+    final response = await http.get(Uri.parse('https://api.example.com/categories'));
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((category) => Category.fromJson(category)).toList();
+    } else {
+      throw Exception('Failed to load categories');
+    }
   }
 }

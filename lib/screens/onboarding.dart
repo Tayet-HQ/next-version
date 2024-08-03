@@ -12,7 +12,7 @@ class Onboarding extends StatelessWidget {
       Container(
           decoration: const BoxDecoration(
               image: DecorationImage(
-                  image: AssetImage("assets/img/onboard-background-free.jpg"),
+                  image: AssetImage("assets/img/t3-splash01.jpg"),
                   fit: BoxFit.cover))),
       Padding(
         padding:
@@ -43,14 +43,7 @@ class Onboarding extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 42.0),
-                child: Row(children: <Widget>[
-                  Image.asset("assets/img/logo-ios.png", scale: 2.6),
-                  const SizedBox(width: 30.0),
-                  Image.asset("assets/img/logo-android.png", scale: 2.6)
-                ]),
-              ),
+
               Padding(
                 padding: const EdgeInsets.only(top: 16.0),
                 child: SizedBox(
@@ -70,6 +63,7 @@ class Onboarding extends StatelessWidget {
                             left: 16.0, right: 16.0, top: 12, bottom: 12),
                         child: Text("GET STARTED",
                             style: TextStyle(
+                                color: Colors.white,
                                 fontWeight: FontWeight.w600, fontSize: 16.0))),
                   ),
                 ),
