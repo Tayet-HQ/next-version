@@ -9,14 +9,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tayet_app_v3/widgets/navbar.dart';
 import 'package:tayet_app_v3/widgets/drawer.dart';
 import 'package:tayet_app_v3/widgets/input.dart';
-import 'package:tayet_app_v3/widgets/card-horizontal.dart';
-import 'package:tayet_app_v3/widgets/card-category.dart';
-import 'package:tayet_app_v3/widgets/card-small.dart';
-import 'package:tayet_app_v3/widgets/card-square.dart';
-import 'package:tayet_app_v3/widgets/slider-product.dart';
-import 'package:tayet_app_v3/widgets/photo-album.dart';
+import 'package:tayet_app_v3/widgets/card_horizontal.dart';
+import 'package:tayet_app_v3/widgets/card_category.dart';
+import 'package:tayet_app_v3/widgets/card_small.dart';
+import 'package:tayet_app_v3/widgets/card_square.dart';
+import 'package:tayet_app_v3/widgets/slider_product.dart';
+import 'package:tayet_app_v3/widgets/photo_album.dart';
 
-import 'package:tayet_app_v3/widgets/table-cell.dart';
+import 'package:tayet_app_v3/widgets/table_cell.dart';
 
 final Map<String, Map<String, String>> homeCards = {
   "Ice Cream": {
@@ -88,7 +88,7 @@ List<Map<String, String>> imgArray = [
 ];
 
 class Components extends StatefulWidget {
-  const Components({Key? key}) : super(key: key);
+  const Components({super.key});
 
   @override
   _ComponentsState createState() => _ComponentsState();
@@ -119,7 +119,7 @@ class _ComponentsState extends State<Components> {
 
         ),
         backgroundColor: MaterialColors.bgColorScreen,
-        drawer: MaterialDrawer(currentPage: "Components"),
+        drawer: const MaterialDrawer(currentPage: "Components"),
         body: SingleChildScrollView(
             child: Padding(
           padding: const EdgeInsets.only(right: 24, left: 24, bottom: 36),

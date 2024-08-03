@@ -19,8 +19,8 @@ class Input extends StatelessWidget {
   final Color cursorColor;
   final Color hintTextColor;
 
-  Input(
-      {required this.placeholder,
+  const Input(
+      {super.key, required this.placeholder,
       required this.suffixIcon,
       required this.prefixIcon,
       required this.onTap,
@@ -50,7 +50,7 @@ class Input extends StatelessWidget {
           fontSize: 14.0,
           color: textColor,
         ),
-        textAlignVertical: TextAlignVertical(y: 0.5),
+        textAlignVertical: const TextAlignVertical(y: 0.5),
         decoration: InputDecoration(
             contentPadding:
                 EdgeInsets.only(left: 16, bottom: outlineBorder ? 20 : 16),

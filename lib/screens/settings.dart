@@ -4,15 +4,17 @@ import 'package:tayet_app_v3/constants/Theme.dart';
 
 //widgets
 import 'package:tayet_app_v3/widgets/navbar.dart';
-import 'package:tayet_app_v3/widgets/table-cell.dart';
+import 'package:tayet_app_v3/widgets/table_cell.dart';
 
 import 'package:tayet_app_v3/widgets/drawer.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({Key? key}) : super(key: key);
+  const Settings({super.key});
 
   @override
-  _SettingsState createState() => _SettingsState();
+  _SettingsState createState() {
+    return _SettingsState();
+  }
 }
 
 class _SettingsState extends State<Settings> {
@@ -21,11 +23,9 @@ class _SettingsState extends State<Settings> {
 
   @override
   void initState() {
-    setState(() {
-      switchValueOne = true;
-      switchValueTwo = false;
-    });
     super.initState();
+    switchValueOne = true;
+    switchValueTwo = false;
   }
 
   @override
@@ -41,7 +41,7 @@ class _SettingsState extends State<Settings> {
           searchController: TextEditingController(),
           searchOnChanged: Function.apply,
         ),
-        drawer: MaterialDrawer(currentPage: "Settings"),
+        drawer: const MaterialDrawer(currentPage: "Settings"),
         backgroundColor: MaterialColors.bgColorScreen,
         body: SingleChildScrollView(
           child: Padding(

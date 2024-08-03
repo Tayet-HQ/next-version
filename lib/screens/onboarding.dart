@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tayet_app_v3/constants/Theme.dart';
 
 class Onboarding extends StatelessWidget {
-  const Onboarding({Key? key}) : super(key: key);
+  const Onboarding({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -27,8 +27,8 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
   final bool noShadow;
   final Color bgColor;
 
-  Navbar(
-      {this.title = "Home",
+  const Navbar(
+      {super.key, this.title = "Home",
       this.categoryOne = "",
       this.categoryTwo = "",
       required this.tags,
@@ -56,10 +56,11 @@ class Navbar extends StatefulWidget implements PreferredSizeWidget {
 class _NavbarState extends State<Navbar> {
   late String activeTag;
 
-  ItemScrollController _scrollController = ItemScrollController();
+  final ItemScrollController _scrollController = ItemScrollController();
 
+  @override
   void initState() {
-    if (widget.tags.length != 0) {
+    if (widget.tags.isNotEmpty) {
       activeTag = widget.tags[0];
     }
     super.initState();
@@ -71,7 +72,7 @@ class _NavbarState extends State<Navbar> {
         widget.categoryOne.isNotEmpty && widget.categoryTwo.isNotEmpty;
     final bool tagsExist =
         // ignore: unnecessary_null_comparison
-        widget.tags == null ? false : (widget.tags.length == 0 ? false : true);
+        widget.tags == null ? false : (widget.tags.isEmpty ? false : true);
 
     return Container(
         height: widget.searchBar
@@ -90,7 +91,7 @@ class _NavbarState extends State<Navbar> {
                       : Colors.transparent,
                   spreadRadius: -10,
                   blurRadius: 12,
-                  offset: Offset(0, 5))
+                  offset: const Offset(0, 5))
             ]),
         child: SafeArea(
           bottom: false,
@@ -116,10 +117,11 @@ class _NavbarState extends State<Navbar> {
                                     : Colors.white,
                                 size: 24.0),
                             onPressed: () {
-                              if (!widget.backButton)
+                              if (!widget.backButton) {
                                 Scaffold.of(context).openDrawer();
-                              else
+                              } else {
                                 Navigator.pop(context);
+                              }
                             }),
                         Padding(
                           padding: const EdgeInsets.only(left: 8.0),
@@ -192,7 +194,7 @@ class _NavbarState extends State<Navbar> {
                         enabledBorderColor: Colors.black.withOpacity(0.2),
                         focusedBorderColor: MaterialColors.muted,
                         suffixIcon:
-                            Icon(Icons.zoom_in, color: MaterialColors.muted),
+                            const Icon(Icons.zoom_in, color: MaterialColors.muted),
                         onTap: () {
                           // if (!widget.isOnSearch)
                           // Navigator.push(
@@ -201,7 +203,7 @@ class _NavbarState extends State<Navbar> {
                           //         builder: (context) => Search()));
                         },
                         prefixIcon:
-                            Icon(Icons.search, color: MaterialColors.muted),
+                            const Icon(Icons.search, color: MaterialColors.muted),
                         filled: true,
                         fillColor: Colors.white),
                   ),
@@ -222,22 +224,22 @@ class _NavbarState extends State<Navbar> {
                         },
                         child: Row(
                           children: [
-                            Icon(Icons.border_all,
+                            const Icon(Icons.border_all,
                                 color: Colors.black87, size: 22.0),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(widget.categoryOne,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black87, fontSize: 16.0)),
                           ],
                         ),
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       Container(
                         color: MaterialColors.muted,
                         height: 25,
                         width: 0.3,
                       ),
-                      SizedBox(width: 30),
+                      const SizedBox(width: 30),
                       GestureDetector(
                         onTap: () {
                           // Navigator.push(
@@ -247,11 +249,11 @@ class _NavbarState extends State<Navbar> {
                         },
                         child: Row(
                           children: [
-                            Icon(Icons.camera_enhance,
+                            const Icon(Icons.camera_enhance,
                                 color: Colors.black87, size: 22.0),
-                            SizedBox(width: 10),
+                            const SizedBox(width: 10),
                             Text(widget.categoryTwo,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black87, fontSize: 16.0)),
                           ],
                         ),
@@ -259,7 +261,7 @@ class _NavbarState extends State<Navbar> {
                     ],
                   ),
                 if (tagsExist)
-                  Container(
+                  SizedBox(
                     height: 40,
                     child: ScrollablePositionedList.builder(
                       itemScrollController: _scrollController,
@@ -273,7 +275,7 @@ class _NavbarState extends State<Navbar> {
                               _scrollController.scrollTo(
                                   index:
                                       index == widget.tags.length - 1 ? 1 : 0,
-                                  duration: Duration(milliseconds: 420),
+                                  duration: const Duration(milliseconds: 420),
                                   curve: Curves.easeIn);
                               widget.getCurrentPage(activeTag);
                             }
@@ -281,7 +283,7 @@ class _NavbarState extends State<Navbar> {
                           child: Container(
                               margin: EdgeInsets.only(
                                   left: index == 0 ? 46 : 8, right: 8),
-                              padding: EdgeInsets.only(left: 20, right: 20),
+                              padding: const EdgeInsets.only(left: 20, right: 20),
                               decoration: BoxDecoration(
                                   border: Border(
                                       bottom: BorderSide(
