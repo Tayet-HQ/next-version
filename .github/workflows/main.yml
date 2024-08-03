@@ -1,4 +1,4 @@
-name: Build and Deploy Flutter Web App
+name: Build 🐧📻 Deploy
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.*'
+          flutter-version: '3.x'
       - run: flutter pub get
 
       # Check for web/index.html
