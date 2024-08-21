@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-        
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
@@ -55,4 +55,4 @@ jobs:
           # Flutter channel
           flutter_channel: 'stable'
           # Channel ID
-          # channel_id: '1114598068234328104'
+          channel_id: ''
