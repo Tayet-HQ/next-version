@@ -1,8 +1,9 @@
-name: Build 🐧📻 Deploy
+name: Build and Deploy Flutter Web App
+
 on:
   push:
-    branches: [master]
-  workflow_dispatch: 
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,10 +11,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.x'
+          flutter-version: '3.4.4'
+
       - run: flutter pub get
 
       # Check for web/index.html
@@ -42,15 +45,14 @@ jobs:
           tag_name: ${{ github.ref }}
           name: Release ${{ github.ref }}
           body: Automated release from GitHub Actions.
-      - name: Setup Dart SDK
+      - name: Pinky Flutter
         # You may pin to the exact commit or the version.
-        # uses: dart-lang/setup-dart@f0ead981b4d9a35b37f30d36160575d60931ec30
-        uses: dart-lang/setup-dart@v1.6.4
+        # uses: rexthecoder/Pinky@c495e71691032166b557145005968ac2ac7e9032
+        uses: rexthecoder/Pinky@v2.0.0
         with:
-          # This can be either the channel to install (i.e., 'stable', 'beta', 'dev'), an SDK release version (i.e., '2.19', '3.1'), or a specific SDK version (i.e, '2.19.1', '3.0.0-1.4.beta').
-          sdk: 'stable'
-          # The CPU architecture ('x64', 'ia32', 'arm', or 'arm64').
-          # architecture: # optional
-          # The build flavor ('release' or 'raw').
-          flavor: 'release'
-                
+          # Flutter version
+          flutter_version: '3.4.4'
+          # Flutter channel
+          flutter_channel: 'stable'
+          # Channel ID
+          channel_id: '1114598068234328104'
